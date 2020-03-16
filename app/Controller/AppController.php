@@ -30,28 +30,43 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
-	public function setFlash($message,$extra=array()){
-		$this->Session->setFlash($message,'flash_metronic',$extra);
-	}
-	
-	public function beforeFilter(){
-		if($this->request->is('ajax')){
-			$this->layout = 'ajax';
-		}
-	}
-	
-	public function setSuccess($msg=null){
-		if(!$msg){
-			$msg = __('Action Successfully');
-		}
-		$this->setFlash($msg,array('class'=>'alert-success'));
-	}
-	
-	public function setError($msg=null){
-		if(!$msg){
-			$msg = __('Fail');
-		}
-		$this->setFlash($msg,array('class'=>'alert-error'));
-	}
+class AppController extends Controller
+{
+    public $components = array(
+        'Session',
+        'RequestHandler',
+        'Paginator'
+    );
+    
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        if ($this->RequestHandler->responseType() == 'json') {
+            $this->RequestHandler->setContent('json', 'application/json');
+        }
+        if ($this->request->is('ajax')) {
+            $this->layout = 'ajax';
+        }
+    }
+    
+    public function setFlash($message, $extra=array())
+    {
+        $this->Session->setFlash($message, 'flash_metronic', $extra);
+    }
+ 
+    public function setSuccess($msg=null)
+    {
+        if (!$msg) {
+            $msg = __('Action Successfully');
+        }
+        $this->setFlash($msg, array('class'=>'alert-success'));
+    }
+    
+    public function setError($msg=null)
+    {
+        if (!$msg) {
+            $msg = __('Fail');
+        }
+        $this->setFlash($msg, array('class'=>'alert-error'));
+    }
 }

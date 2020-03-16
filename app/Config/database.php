@@ -51,7 +51,7 @@
  * database. Uses database default not specified.
  *
  * sslmode =>
- * For Postgres specifies whether to 'disable', 'allow', 'prefer', or 'require' SSL for the 
+ * For Postgres specifies whether to 'disable', 'allow', 'prefer', or 'require' SSL for the
  * connection. The default value is 'allow'.
  *
  * unix_socket =>
@@ -66,16 +66,16 @@
  * flags =>
  * A key/value array of driver specific connection options.
  */
-class DATABASE_CONFIG {
-
-	public $default = array(
-		'datasource' => 'Database/Mysql',
-		'persistent' => false,
-		'host' 		 => '',
-		'login'      => '',
-		'password'   => '',
-		'database'   => '',
-		'prefix'     => '',
-		'encoding'   => 'utf8',
-	);
+class DATABASE_CONFIG
+{
+    public $default = array(
+        'datasource' => 'Database/Mysql',
+        'persistent' => false,
+        'host' 		 => 'localhost',
+        'login'      => 'root',
+        'password'   => '',
+        'database'   => 'dewtouch',
+        'prefix'     => '',
+        'encoding'   => 'utf8',
+    );
 }

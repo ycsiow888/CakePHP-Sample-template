@@ -1,12 +1,11 @@
 <?php
 
-class Portion extends AppModel{
+class Portion extends AppModel
+{
+    public $belongsTo = array('Item');
 
-	var $belongsTo = array('Item');
-
-	var $hasMany = array('PortionDetail' => array(
-								'conditions' => array('PortionDetail.valid' => 1)
-							)
-						);
-
+    public $hasMany = array('PortionDetail' => array(
+                                'conditions' => array('PortionDetail.valid' => 1)
+                            )
+                        );
 }

@@ -1,27 +1,28 @@
 
 <div class="row-fluid">
-	<table class="table table-bordered" id="table_records">
+	<table class="table table-bordered" id="index">
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>NAME</th>	
+				<th>Id</th>
+				<th>Name</th>
 			</tr>
 		</thead>
-		<tbody>
-			<?php foreach($records as $record):?>
-			<tr>
-				<td><?php echo $record['Record']['id']?></td>
-				<td><?php echo $record['Record']['name']?></td>
-			</tr>	
-			<?php endforeach;?>
-		</tbody>
 	</table>
 </div>
 <?php $this->start('script_own')?>
 <script>
 $(document).ready(function(){
-	$("#table_records").dataTable({
 
+	$("#index").dataTable({
+		"bProcessing": true,
+    	"bServerSide": true,
+    	"sAjaxSource": {
+            "url":"<?php echo Router::url($this->here, true);?>"
+        },
+    	"aoColumns": [
+        	{mData:"id"},
+            {mData:"name"},      
+        ],
 	});
 })
 </script>

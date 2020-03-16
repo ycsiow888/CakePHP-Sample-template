@@ -21,7 +21,7 @@ Question: Advanced Input Field</div>
 <button class="close" data-dismiss="alert"></button>
 The table you start with</div>
 
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover" id="add_row">
 <thead>
 <th><span id="add_item_button" class="btn mini green addbutton" onclick="addToObj=false">
 											<i class="icon-plus"></i></span></th>
@@ -33,9 +33,9 @@ The table you start with</div>
 <tbody>
 	<tr>
 	<td></td>
-	<td><textarea name="data[1][description]" class="m-wrap  description required" rows="2" ></textarea></td>
-	<td><input name="data[1][quantity]" class=""></td>
-	<td><input name="data[1][unit_price]"  class=""></td>
+	<td><input type="text" name="data[1][description]" class="m-wrap  description required" rows="2" ></td>
+	<td><input type="text"name="data[1][quantity]" class=""></td>
+	<td><input type="text"name="data[1][unit_price]"  class=""></td>
 	
 </tr>
 
@@ -65,10 +65,10 @@ Your browser does not support the video tag.
 $(document).ready(function(){
 
 	$("#add_item_button").click(function(){
-
-
-		alert("suppose to add a new row");
-		
+		var table = document.getElementById("add_row");
+		var tbodyRowCount = table.tBodies[0].rows.length;
+		var markup =`<tr><td></td><td><input type="text" name="data[${tbodyRowCount+1}][description]" class="m-wrap  description required" rows="" ></td>	<td><input type="text" name="data[${tbodyRowCount+1}][quantity]" class=""></td>	<td><input type="text" name="data[${tbodyRowCount+1}][unit_price]"  class=""></td></tr>`
+		$("table tbody").append(markup);		
 
 		});
 
